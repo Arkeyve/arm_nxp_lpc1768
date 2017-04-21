@@ -1,0 +1,114 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 40001000        DCD              0x40001000
+    6 00000004 00000000        DCD              Reset_Handler
+    7 00000008         
+    8 00000008                 AREA             ascii2hex,CODE,READONLY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000                 ENTRY
+   11 00000000         
+   12 00000000         Reset_Handler
+   13 00000000 F04F 0408       MOV              R4,#8
+   14 00000004 F04F 0300       MOV              R3,#0
+   15 00000008 490A            LDR              R1,=array
+   16 0000000A EA4F 1303 
+                       UP      LSL              R3,#4
+   17 0000000E F811 2B01       LDRB             R2,[R1],#1
+   18 00000012 2A41            CMP              R2,#0x41
+   19 00000014 BF34 3A30       SUBLO            R2,#0x30
+   20 00000018 3A37            SUBHS            R2,#0x37
+   21 0000001A EA43 0302       ORR              R3,R2
+   22 0000001E F1A4 0401       SUB              R4,#1
+   23 00000022 F094 0F00       TEQ              R4,#0
+   24 00000026 D1F0            BNE              UP
+   25 00000028 E7FE    STOP    B                STOP
+   26 0000002A         
+   27 0000002A 31 32 41 
+              42 33 34 
+              43 44    array   DCB              "12AB34CD"
+   28 00000032                 END
+              00 00 00000000 
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=ascii-he
+x.d -oascii-hex.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\
+ARM\Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=ascii-hex.lst ascii-hex.
+asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file ascii-hex.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file ascii-hex.asm
+   Uses
+      At line 2 in file ascii-hex.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 12 in file ascii-hex.asm
+   Uses
+      At line 6 in file ascii-hex.asm
+      At line 9 in file ascii-hex.asm
+
+STOP 00000028
+
+Symbol: STOP
+   Definitions
+      At line 25 in file ascii-hex.asm
+   Uses
+      At line 25 in file ascii-hex.asm
+Comment: STOP used once
+UP 0000000A
+
+Symbol: UP
+   Definitions
+      At line 16 in file ascii-hex.asm
+   Uses
+      At line 24 in file ascii-hex.asm
+Comment: UP used once
+array 0000002A
+
+Symbol: array
+   Definitions
+      At line 27 in file ascii-hex.asm
+   Uses
+      At line 15 in file ascii-hex.asm
+Comment: array used once
+ascii2hex 00000000
+
+Symbol: ascii2hex
+   Definitions
+      At line 8 in file ascii-hex.asm
+   Uses
+      None
+Comment: ascii2hex unused
+5 symbols
+340 symbols in table

@@ -1,0 +1,135 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             mycode,CODE,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 40001000        DCD              0X40001000  ;
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 ENTRY
+    8 00000008                 EXPORT           Reset_Handler
+    9 00000008         Reset_Handler
+   10 00000008 4810            LDR              R0,=SRC
+   11 0000000A 4D11            LDR              R5,=Result
+   12 0000000C F04F 0105       MOV              R1,#5
+   13 00000010 F04F 0201       MOV              R2,#1
+   14 00000014 4613    LOOP    MOV              R3,R2
+   15 00000016 461C            MOV              R4,R3
+   16 00000018 18F6    DOWN    ADDS             R6,R3
+   17 0000001A F147 0700       ADC              R7,#0
+   18 0000001E F1A4 0401       SUB              R4,#1
+   19 00000022 2C00            CMP              R4,#0
+   20 00000024 D1F8            BNE              DOWN
+   21 00000026 EB18 0806       ADDS             R8,R6
+   22 0000002A F147 0900       ADC              R9,R7,#0
+   23 0000002E EBA6 0606       SUB              R6,R6
+   24 00000032 F102 0201       ADD              R2,#1
+   25 00000036 F1A1 0101       SUB              R1,#1
+   26 0000003A 2900            CMP              R1,#0
+   27 0000003C D1EA            BNE              LOOP
+   28 0000003E F845 8B04       STR              R8,[R5],#4
+   29 00000042 F8C5 9000       STR              R9,[R5]
+   30 00000046         STOP
+   31 00000046 E7FE            B                STOP
+   32 00000048 12345678 
+                       SRC     DCD              0X12345678
+   33 0000004C 00000000 
+              00000000         AREA             DATASEG,DATA,READWRITE
+   34 00000000 00000000 
+              00000000 Result  DCD              0,0
+   35 00000008                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=L3.d -oL
+3.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NXP\LP
+C17xx --predefine="__EVAL SETA 1" --list=L3.lst L3.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DOWN 00000018
+
+Symbol: DOWN
+   Definitions
+      At line 16 in file L3.asm
+   Uses
+      At line 20 in file L3.asm
+Comment: DOWN used once
+LOOP 00000014
+
+Symbol: LOOP
+   Definitions
+      At line 14 in file L3.asm
+   Uses
+      At line 27 in file L3.asm
+Comment: LOOP used once
+Reset_Handler 00000008
+
+Symbol: Reset_Handler
+   Definitions
+      At line 9 in file L3.asm
+   Uses
+      At line 5 in file L3.asm
+      At line 8 in file L3.asm
+
+SRC 00000048
+
+Symbol: SRC
+   Definitions
+      At line 32 in file L3.asm
+   Uses
+      At line 10 in file L3.asm
+Comment: SRC used once
+STOP 00000046
+
+Symbol: STOP
+   Definitions
+      At line 30 in file L3.asm
+   Uses
+      At line 31 in file L3.asm
+Comment: STOP used once
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file L3.asm
+   Uses
+      At line 2 in file L3.asm
+Comment: __Vectors used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 1 in file L3.asm
+   Uses
+      None
+Comment: mycode unused
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DATASEG 00000000
+
+Symbol: DATASEG
+   Definitions
+      At line 33 in file L3.asm
+   Uses
+      None
+Comment: DATASEG unused
+Result 00000000
+
+Symbol: Result
+   Definitions
+      At line 34 in file L3.asm
+   Uses
+      At line 11 in file L3.asm
+Comment: Result used once
+2 symbols
+342 symbols in table

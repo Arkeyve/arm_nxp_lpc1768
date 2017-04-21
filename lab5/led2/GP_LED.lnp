@@ -1,0 +1,5 @@
+--cpu Cortex-M3 "startup_lpc17xx.o" "gpled.o" "system_lpc17xx.o" 
+--strict --scatter "GP_LED.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\GP_LED.map" -o GP_LED.axf

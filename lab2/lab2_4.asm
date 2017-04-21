@@ -1,0 +1,32 @@
+		AREA RESET,DATA,READONLY
+		EXPORT __Vectors
+__Vectors
+		DCD 0x40001000
+		DCD Reset_Handler
+		
+		AREA mycode,CODE,READONLY
+		EXPORT Reset_Handler
+		ENTRY
+
+Reset_Handler
+		LDR R0,=ARRAY
+		LDR R1,=ARRAY+(SIZE-1)*4
+		MOV R4,#(SIZE/2)
+
+BACK	LDR R2,[R0]
+		LDR R3,[R1]
+		STR R2,[R1]
+		STR R3,[R0]
+		ADD R0,#4
+		SUB R1,#4
+		SUB R4,#1
+		CMP R4,#0
+		BNE BACK
+	
+STOP	B STOP
+
+SIZE	equ 10
+	
+		AREA mydata,DATA,READWRITE
+ARRAY	DCD 0,0,0,0,0,0,0,0,0,0
+		END

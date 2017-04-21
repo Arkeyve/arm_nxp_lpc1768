@@ -1,0 +1,18 @@
+Dependencies for Project 'led', Target 'Target 1': (DO NOT MODIFY !)
+F (.\startup_LPC17xx.s)(0x50877CD6)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I D:\Code\Assembly\ARM_NXP-LPC1768\lab5\led\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.2.0\Device\Include--pd "__UVISION_VERSION SETA 517" --pd "_RTE_ SETA 1" --pd "LPC175x_6x SETA 1"--list .\startup_lpc17xx.lst --xref -o .\startup_lpc17xx.o --depend .\startup_lpc17xx.d)
+F (.\led1.c)(0x56CFD8D1)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I D:\Code\Assembly\ARM_NXP-LPC1768\lab5\led\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.2.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DLPC175x_6x-o .\led1.o --omf_browse .\led1.crf --depend .\led1.d)
+I (C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.2.0\Device\Include\LPC17xx.h)(0x4FF52120)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm3.h)(0x5625DA34)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55DB4EA8)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmInstr.h)(0x5625C678)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\cmsis_armcc.h)(0x5625C678)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmFunc.h)(0x5625C678)
+I (C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.2.0\Device\Include\system_LPC17xx.h)(0x4DA50E94)
+F (C:\Keil_v5\ARM\Pack\Keil\LPC1700_DFP\2.2.0\Device\Source\system_LPC17xx.c)(0x4F8E82D6)(-c --cpu Cortex-M3 -D__EVAL -g -O0 --apcs=interwork -I D:\Code\Assembly\ARM_NXP-LPC1768\lab5\led\RTE-I C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include-I C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.2.0\Device\Include-D__UVISION_VERSION="517" -D_RTE_ -DLPC175x_6x-o .\system_lpc17xx.o --omf_browse .\system_lpc17xx.crf --depend .\system_lpc17xx.d)
+I (C:\Keil_v5\ARM\ARMCC\include\stdint.h)(0x55DB4EA8)
+I (C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.2.0\Device\Include\LPC17xx.h)(0x4FF52120)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cm3.h)(0x5625DA34)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmInstr.h)(0x5625C678)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\cmsis_armcc.h)(0x5625C678)
+I (C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include\core_cmFunc.h)(0x5625C678)
+I (C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.2.0\Device\Include\system_LPC17xx.h)(0x4DA50E94)

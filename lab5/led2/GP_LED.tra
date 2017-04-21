@@ -1,0 +1,22 @@
+*** Creating Trace Output File 'GP_LED.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"startup_lpc17xx.o"'
+### List of Objects: adding '"gpled.o"'
+### List of Objects: adding '"system_lpc17xx.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M3 "startup_lpc17xx.o" "gpled.o" "system_lpc17xx.o" 
+--strict --scatter "GP_LED.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\GP_LED.map" -o GP_LED.axf### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'GP_LED.axf'
+### ADS-LD Command File: 'GP_LED.lnp'
+### Checking for dirty Components...
+### Creating CmdFile 'GP_LED.lnp', Handle=0x00000830
+### Writing '.lnp' file
+### ADS-LD Command file 'GP_LED.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

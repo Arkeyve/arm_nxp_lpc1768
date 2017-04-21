@@ -1,0 +1,151 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,CODE,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 40001000        DCD              0x40001000
+    6 00000004 00000000        DCD              Reset_Handler
+    7 00000008         
+    8 00000008                 AREA             mycode,CODE,READONLY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000                 ENTRY
+   11 00000000         
+   12 00000000         Reset_Handler
+   13 00000000 480B            LDR              R0,=m
+   14 00000002 490C            LDR              R1,=n
+   15 00000004 4A0C            LDR              R2,=prod
+   16 00000006 6803            LDR              R3,[R0]
+   17 00000008 680C            LDR              R4,[R1]     ;counter
+   18 0000000A F04F 0500       MOV              R5,#0       ;sum clear
+   19 0000000E F04F 0600       MOV              R6,#0       ;carry clear
+   20 00000012 18ED    BACK    ADDS             R5,R3       ;add itself
+   21 00000014 F146 0600       ADC              R6,#0       ;add carry
+   22 00000018 F1A4 0401       SUB              R4,#1       ;decrement
+   23 0000001C 2C00            CMP              R4,#0
+   24 0000001E D1F8            BNE              BACK
+   25 00000020 F842 5B04       STR              R5,[R2],#4
+   26 00000024 6016            STR              R6,[R2]
+   27 00000026         
+   28 00000026 E7FE    STOP    B                STOP
+   29 00000028 00000062 
+                       m       DCD              98
+   30 0000002C 00000038 
+                       n       DCD              56
+   31 00000030         
+   32 00000030 00000000 
+              00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   33 00000000 00000000 
+              00000000 prod    DCD              0,0
+   34 00000008                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=lab3_4.d
+ -olab3_4.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\In
+c\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=lab3_4.lst lab3_4.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file lab3_4.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file lab3_4.asm
+   Uses
+      At line 2 in file lab3_4.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+BACK 00000012
+
+Symbol: BACK
+   Definitions
+      At line 20 in file lab3_4.asm
+   Uses
+      At line 24 in file lab3_4.asm
+Comment: BACK used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 12 in file lab3_4.asm
+   Uses
+      At line 6 in file lab3_4.asm
+      At line 9 in file lab3_4.asm
+
+STOP 00000026
+
+Symbol: STOP
+   Definitions
+      At line 28 in file lab3_4.asm
+   Uses
+      At line 28 in file lab3_4.asm
+Comment: STOP used once
+m 00000028
+
+Symbol: m
+   Definitions
+      At line 29 in file lab3_4.asm
+   Uses
+      At line 13 in file lab3_4.asm
+Comment: m used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 8 in file lab3_4.asm
+   Uses
+      None
+Comment: mycode unused
+n 0000002C
+
+Symbol: n
+   Definitions
+      At line 30 in file lab3_4.asm
+   Uses
+      At line 14 in file lab3_4.asm
+Comment: n used once
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 32 in file lab3_4.asm
+   Uses
+      None
+Comment: mydata unused
+prod 00000000
+
+Symbol: prod
+   Definitions
+      At line 33 in file lab3_4.asm
+   Uses
+      At line 15 in file lab3_4.asm
+Comment: prod used once
+2 symbols
+343 symbols in table

@@ -1,0 +1,179 @@
+PROJECT REPORT
+--------------
+
+Question:
+--------------------------------------------------------------------------------
+Prompt the user to input the number of BCD numbers(max 10).
+Each number has to be at most 3 digits.
+Display the numbers entered from the keyboard on the LCD.
+There should be provision to accept a number or cancel the last entered digit.
+DISPLAY THE BCD SUM
+--------------------------------------------------------------------------------
+
+/*********************
+ *  KEYBOARD LAYOUT  *
+ *  ---------------  *
+ *                   *
+ *   1   2   3   d   *
+ *   4   5   6   -   *
+ *   7   8   9   -   *
+ *   -   0   -   -   *
+ *   -   -   -   e   *
+ *                   *
+ *********************/
+
+Logic:
+# Initialize, enable all that stuff.
+# Have a logic counter ("logcount"), increment each time "enter" is pressed.
+# When "logcount == 0", In row 1, send char[] = {"Number of nos.?"}, which is 15 characters, so would fit in the top display.
+# Go to row 2, initialize stack "char no_of_nos[2]" of maxsize 2, (since max "10").
+# Take input from keyboard, push to stack, (no_of_nos[++top] = *number entered in char*), if "delete" button pressed, pop, if another button pressed, push. Keep pushing till "enter" button pressed.
+    ****LOGIC FOR INSERTION AND DELETION USING CHARACTER STACK****
+    char c[20]; int top = 0; //stack initialized
+    push(){c[top++] = '1'; c[top] = '\0';} // push operation
+    pop(){c[--top] = '\0';}
+    **************************************************************
+# Every time a button is pressed: if(number){push(); display();} if(delete){pop(); display();} if(enter) logcount++;
+# n = atoi(no_of_nos); // counter for addition
+# When "logcount == 1", go to row 1, send char[] = {"Enter numbers"}, 13 characters.
+# When "logcount == 2", go to row 1, send char[] = {"BCD Sum is"}, 10 characters. Then go to row 2 and send calculated sum as "char sum[] = {(char)intsum};"
+
+Requirements:
+# P0.23 - P0.28 for LCD
+# 8 bits for keyboard, 4 of which must be on P0 or P2, for IO interrupts. P0.19 - P0.22 for rows, P0.15 - P2.18 for cols and interrupts.
+# Thus,
+    ----------------------
+    |   LCD : CND        |
+    |   KEYBOARD : CNC   |
+    ----------------------
+
+    row col action
+    0   0   push "1"
+    0   1   push "2"
+    0   2   push "3"
+    0   3   pop
+    1   0   push "4"
+    1   1   push "5"
+    1   2   push "6"
+    1   3   -x-
+    2   0   push "7"
+    2   1   push "8"
+    2   2   push "9"
+    2   3   -x-
+    3   0   -x-
+    3   1   push "0"
+    3   2   -x-
+    3   3   enter
+
+
+void EINT3_IRQHandler(void) {
+	unsigned int x = LPC_GPIOINT->IO0IntStatR;	// get status of interrupt register
+	x &= 0x00078000; // extract bits 15 to 18
+	
+	LPC_GPIO0->FIOMASK = mask_lcd;
+	
+	for(j=0; j<100; j++); // some delay for key debounce period error
+
+	if(x == 0x00008000) col = 0; // bit 15
+	else if(x == 0x00010000) col = 1; // bit 16
+	else if(x == 0x00020000) col = 2; // bit 17
+	else if(x == 0x00040000) col = 3; //bit 18
+	else col = -1;
+
+	LPC_GPIO0->FIOCLR = (0xF << 19); // clear rows
+
+	for(row = 0; row < 4; row++) {
+		if(row == 0) {
+			LPC_GPIO0->FIOSET = (1 << 19); // bit 19
+			if((LPC_GPIO0->FIOPIN & 0x00078000) == x) break;
+		}
+		else if(row == 1) {
+			LPC_GPIO0->FIOSET = (1 << 20); // bit 20
+			if((LPC_GPIO0->FIOPIN & 0x00078000) == x) break;
+		}
+		else if(row == 2) {
+			LPC_GPIO0->FIOSET = (1 << 21); // bit 21
+			if((LPC_GPIO0->FIOPIN & 0x00078000) == x) break;
+		}
+		else if(row == 3) {
+			LPC_GPIO0->FIOSET = (1 << 22); // bit 22
+			if((LPC_GPIO0->FIOPIN & 0x00078000) == x) break;
+		}
+	}
+
+	if(col != -1) {
+	    //perform function that corresponds to the input
+	    if(row == 0 && col == 0) {
+	        c[top++] = '1';
+	        c[top] = '\0';
+	    } else if(row == 0 && col == 1) {
+	        c[top++] = '2';
+	        c[top] = '\0';
+	    } else if(row == 0 && col == 2) {
+	        c[top++] = '3';
+	        c[top] = '\0';
+	    } else if(row == 0 && col == 3) {
+	        c[--top] = '\0';
+	    } else if(row == 1 && col == 0) {
+	        c[top++] = '4';
+	        c[top] = '\0';
+	    } else if(row == 1 && col == 1) {
+	        c[top++] = '5';
+	        c[top] = '\0';
+	    } else if(row == 1 && col == 2) {
+	        c[top++] = '6';
+	        c[top] = '\0';
+	    } else if(row == 2 && col == 0) {
+	        c[top++] = '7';
+	        c[top] = '\0';
+	    } else if(row == 2 && col == 1) {
+	        c[top++] = '8';
+	        c[top] = '\0';
+	    } else if(row == 2 && col == 2) {
+	        c[top++] = '9';
+	        c[top] = '\0';
+	    } else if(row == 3 && col == 1) {
+	        c[top++] = '0';
+	        c[top] = '\0';
+	    } else if(row == 3 && col == 3) {
+	        if(logcount == 0) {
+	            logcount++;
+	            number_of_numbers = atoi(c);
+	            top = 0; // reinitialize char stack
+	            c[top] = '\0';
+	        } else if(logcount == 1) {
+	            i++;
+	            integer_sum += atoi(c);
+	            top = 0; // reinitialize char stack
+	            c[top] = '\0';
+	        }
+	    }
+	}
+
+	LPC_GPIOINT->IO0IntClr |= (0xF << 15); // clear interrupt bits 15 - 18
+	LPC_GPIO0->FIOSET = (0xf << 19); // P0.19 - P0.22 set 1 [rows]
+	LPC_GPIO0->FIOMASK = mask_keys;
+}
+
+
+int main(void) {
+    //intializations and declarations
+    while(logcount == 0) {
+        lcd_puts("Number of nos.?"); // in row 1
+        lcd_puts(c); // in row 2
+    }
+    while(logcount == 1) {
+        lcd_puts("Enter numbers"); // in row 1
+        while(i < n) {
+            lcd_puts(c); // in row 2
+        }
+        logcount++; // when i == n, meaning all numbers entered
+    }
+    while(logcount == 2) {
+        lcd_puts("BCD Sum is"); // in row 1
+        char sum[5];
+        sprintf(sum, "%d", intsum); // sprintf converts integer to equivalent string
+        lcd_puts(sum); // in row 2
+    }
+    return 0;
+}

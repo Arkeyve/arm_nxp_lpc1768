@@ -1,0 +1,154 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,CODE,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 40001000        DCD              0x40001000
+    6 00000004 00000000        DCD              Reset_Handler
+    7 00000008         
+    8 00000008                 AREA             mycode,CODE,READONLY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000                 ENTRY
+   11 00000000         
+   12 00000000         Reset_Handler
+   13 00000000 F04F 0302       MOV              R3,#2       ;counter
+   14 00000004 480C            LDR              R0,=num1
+   15 00000006 490D            LDR              R1,=num2
+   16 00000008 4A0D            LDR              R2,=sum
+   17 0000000A 2400            MOVS             R4,#0
+   18 0000000C         ;MOVS R8,#0
+   19 0000000C F850 5B04 
+                       BACK    LDR              R5,[R0],#4
+   20 00000010 F851 6B04       LDR              R6,[R1],#4
+   21 00000014         ;MSR xPSR,R8
+   22 00000014 EB55 0706       ADCS             R7,R5,R6
+   23 00000018 6017            STR              R7,[R2]
+   24 0000001A F1A3 0301       SUB              R3,#1
+   25 0000001E         ;MRS R8,xPSR
+   26 0000001E F093 0F00       TEQ              R3,#0
+   27 00000022 D1F3            BNE              BACK
+   28 00000024         
+   29 00000024 E7FE    STOP    B                STOP
+   30 00000026 00 00 12345678 
+              91011121 num1    DCD              0x12345678,0x91011121
+   31 00000030 91011121 
+              12345678 num2    DCD              0x91011121,0x12345678
+   32 00000038         
+   33 00000038 00000000 
+              00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   34 00000000 00000000 
+              00000000 sum     DCD              0,0
+   35 00000008         
+   36 00000008                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=lab3_1.d
+ -olab3_1.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\In
+c\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=lab3_1.lst lab3_1.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file lab3_1.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file lab3_1.asm
+   Uses
+      At line 2 in file lab3_1.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+BACK 0000000C
+
+Symbol: BACK
+   Definitions
+      At line 19 in file lab3_1.asm
+   Uses
+      At line 27 in file lab3_1.asm
+Comment: BACK used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 12 in file lab3_1.asm
+   Uses
+      At line 6 in file lab3_1.asm
+      At line 9 in file lab3_1.asm
+
+STOP 00000024
+
+Symbol: STOP
+   Definitions
+      At line 29 in file lab3_1.asm
+   Uses
+      At line 29 in file lab3_1.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 8 in file lab3_1.asm
+   Uses
+      None
+Comment: mycode unused
+num1 00000028
+
+Symbol: num1
+   Definitions
+      At line 30 in file lab3_1.asm
+   Uses
+      At line 14 in file lab3_1.asm
+Comment: num1 used once
+num2 00000030
+
+Symbol: num2
+   Definitions
+      At line 31 in file lab3_1.asm
+   Uses
+      At line 15 in file lab3_1.asm
+Comment: num2 used once
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 33 in file lab3_1.asm
+   Uses
+      None
+Comment: mydata unused
+sum 00000000
+
+Symbol: sum
+   Definitions
+      At line 34 in file lab3_1.asm
+   Uses
+      At line 16 in file lab3_1.asm
+Comment: sum used once
+2 symbols
+343 symbols in table

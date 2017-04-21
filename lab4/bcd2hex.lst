@@ -1,0 +1,131 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 40001000        DCD              0x40001000
+    6 00000004 00000000        DCD              Reset_Handler
+    7 00000008         
+    8 00000008                 AREA             bcd2hex,CODE,READONLY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000                 ENTRY
+   11 00000000         
+   12 00000000         Reset_Handler
+   13 00000000 4808            LDR              R0,=bcd
+   14 00000002 6801            LDR              R1,[R0]
+   15 00000004 4C08            LDR              R4,=hex
+   16 00000006 460A            MOV              R2,R1
+   17 00000008 EA4F 1112       LSR              R1,R2,#4
+   18 0000000C F04F 030A       MOV              R3,#0x0A
+   19 00000010 FB01 F103       MUL              R1,R3
+   20 00000014 F002 020F       AND              R2,#0x0F
+   21 00000018 4411            ADD              R1,R2
+   22 0000001A 6021            STR              R1,[R4]
+   23 0000001C         
+   24 0000001C         STOP
+   25 0000001C E7FE            B                STOP
+   26 0000001E         
+   27 0000001E 00 00 00000098 
+                       bcd     DCD              0x98
+   28 00000024         
+   29 00000024 00000000 
+              00000000         AREA             hexstore,DATA,READWRITE
+   30 00000000 00000000 
+                       hex     DCD              0
+   31 00000004         
+   32 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=bcd2hex.
+d -obcd2hex.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\
+Inc\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=bcd2hex.lst bcd2hex.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file bcd2hex.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file bcd2hex.asm
+   Uses
+      At line 2 in file bcd2hex.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 12 in file bcd2hex.asm
+   Uses
+      At line 6 in file bcd2hex.asm
+      At line 9 in file bcd2hex.asm
+
+STOP 0000001C
+
+Symbol: STOP
+   Definitions
+      At line 24 in file bcd2hex.asm
+   Uses
+      At line 25 in file bcd2hex.asm
+Comment: STOP used once
+bcd 00000020
+
+Symbol: bcd
+   Definitions
+      At line 27 in file bcd2hex.asm
+   Uses
+      At line 13 in file bcd2hex.asm
+Comment: bcd used once
+bcd2hex 00000000
+
+Symbol: bcd2hex
+   Definitions
+      At line 8 in file bcd2hex.asm
+   Uses
+      None
+Comment: bcd2hex unused
+4 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+hex 00000000
+
+Symbol: hex
+   Definitions
+      At line 30 in file bcd2hex.asm
+   Uses
+      At line 15 in file bcd2hex.asm
+Comment: hex used once
+hexstore 00000000
+
+Symbol: hexstore
+   Definitions
+      At line 29 in file bcd2hex.asm
+   Uses
+      None
+Comment: hexstore unused
+2 symbols
+341 symbols in table

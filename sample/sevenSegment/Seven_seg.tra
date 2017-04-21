@@ -1,0 +1,22 @@
+*** Creating Trace Output File 'Seven_seg.tra' Ok.
+### Preparing for ADS-LD.
+### Creating ADS-LD Command Line
+### List of Objects: adding '"startup_lpc17xx.o"'
+### List of Objects: adding '"sevenseg_notimer.o"'
+### List of Objects: adding '"system_lpc17xx.o"'
+### ADS-LD Command completed:
+--cpu Cortex-M3 "startup_lpc17xx.o" "sevenseg_notimer.o" "system_lpc17xx.o" 
+--strict --scatter "Seven_seg.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\Seven_seg.map" -o Seven_seg.axf### Preparing Environment (PrepEnvAds)
+### ADS-LD Output File: 'Seven_seg.axf'
+### ADS-LD Command File: 'Seven_seg.lnp'
+### Checking for dirty Components...
+### Creating CmdFile 'Seven_seg.lnp', Handle=0x000003B8
+### Writing '.lnp' file
+### ADS-LD Command file 'Seven_seg.lnp' is ready.
+### ADS-LD: About to start ADS-LD Thread.
+### ADS-LD: executed with 0 errors
+### Updating obj list
+### LDADS_file() completed.

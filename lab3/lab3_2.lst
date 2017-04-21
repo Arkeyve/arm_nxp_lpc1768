@@ -1,0 +1,155 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,CODE,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 40001000        DCD              0x40001000
+    6 00000004 00000000        DCD              Reset_Handler
+    7 00000008         
+    8 00000008                 AREA             mycode,CODE,READONLY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000                 ENTRY
+   11 00000000         
+   12 00000000         Reset_Handler
+   13 00000000 F04F 0302       MOV              R3,#2       ;counter
+   14 00000004 480E            LDR              R0,=num1
+   15 00000006 490F            LDR              R1,=num2
+   16 00000008 4A0F            LDR              R2,=diff
+   17 0000000A F3EF 8403       MRS              R4,xPSR
+   18 0000000E F044 5400       ORR              R4,#0x20000000
+   19 00000012 F384 8803       MSR              xPSR,R4
+   20 00000016 F850 5B04 
+                       BACK    LDR              R5,[R0],#4
+   21 0000001A F851 6B04       LDR              R6,[R1],#4
+   22 0000001E         ;MSR xPSR,R4
+   23 0000001E EB75 0706       SBCS             R7,R5,R6
+   24 00000022 6017            STR              R7,[R2]
+   25 00000024 F1A3 0301       SUB              R3,#1
+   26 00000028         ;MRS R4,xPSR
+   27 00000028 F093 0F00       TEQ              R3,#0       ;CMP R3,#0
+   28 0000002C D1F3            BNE              BACK
+   29 0000002E         
+   30 0000002E E7FE    STOP    B                STOP
+   31 00000030 12345678 
+              91011121 num1    DCD              0x12345678,0x91011121
+   32 00000038 91011121 
+              12345678 num2    DCD              0x91011121,0x12345678
+   33 00000040         
+   34 00000040 00000000 
+              00000000 
+              00000000         AREA             mydata,DATA,READWRITE
+   35 00000000 00000000 
+              00000000 diff    DCD              0,0
+   36 00000008         
+   37 00000008                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=lab3_2.d
+ -olab3_2.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\In
+c\NXP\LPC17xx --predefine="__EVAL SETA 1" --list=lab3_2.lst lab3_2.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file lab3_2.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file lab3_2.asm
+   Uses
+      At line 2 in file lab3_2.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+BACK 00000016
+
+Symbol: BACK
+   Definitions
+      At line 20 in file lab3_2.asm
+   Uses
+      At line 28 in file lab3_2.asm
+Comment: BACK used once
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 12 in file lab3_2.asm
+   Uses
+      At line 6 in file lab3_2.asm
+      At line 9 in file lab3_2.asm
+
+STOP 0000002E
+
+Symbol: STOP
+   Definitions
+      At line 30 in file lab3_2.asm
+   Uses
+      At line 30 in file lab3_2.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 8 in file lab3_2.asm
+   Uses
+      None
+Comment: mycode unused
+num1 00000030
+
+Symbol: num1
+   Definitions
+      At line 31 in file lab3_2.asm
+   Uses
+      At line 14 in file lab3_2.asm
+Comment: num1 used once
+num2 00000038
+
+Symbol: num2
+   Definitions
+      At line 32 in file lab3_2.asm
+   Uses
+      At line 15 in file lab3_2.asm
+Comment: num2 used once
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+diff 00000000
+
+Symbol: diff
+   Definitions
+      At line 35 in file lab3_2.asm
+   Uses
+      At line 16 in file lab3_2.asm
+Comment: diff used once
+mydata 00000000
+
+Symbol: mydata
+   Definitions
+      At line 34 in file lab3_2.asm
+   Uses
+      None
+Comment: mydata unused
+2 symbols
+343 symbols in table

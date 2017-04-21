@@ -1,0 +1,5 @@
+--cpu Cortex-M3 "startup_lpc17xx.o" "sevenseg_notimer.o" "system_lpc17xx.o" 
+--strict --scatter "Seven_seg.sct" 
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols 
+--info sizes --info totals --info unused --info veneers 
+ --list ".\Seven_seg.map" -o Seven_seg.axf

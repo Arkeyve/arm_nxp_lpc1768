@@ -1,0 +1,86 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 40001000        DCD              0x40001000
+    6 00000004 00000000        DCD              Reset_Handler
+    7 00000008         
+    8 00000008                 AREA             mycode,CODE,READONLY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000                 ENTRY
+   11 00000000         
+   12 00000000         Reset_Handler
+   13 00000000 F04F 000A       LDR              R0,=0xA
+   14 00000004 F04F 010B       LDR              R1,=0xB
+   15 00000008         
+   16 00000008         STOP
+   17 00000008 E7FE            B                STOP
+   18 0000000A                 END
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\intro.d -o.\objects\intro.o -I"Z:\media\arkeyve\Archive\
+Code\Embedded System\ARM_NXP-LPC1768\lab0\intro\RTE" -IC:\Keil_v5\ARM\PACK\Keil
+\LPC1700_DFP\2.2.0\Device\Include -IC:\Keil_v5\ARM\CMSIS\Include --predefine="_
+_EVAL SETA 1" --predefine="__UVISION_VERSION SETA 517" --predefine="LPC175x_6x 
+SETA 1" --list=.\listings\intro.lst intro.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file intro.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file intro.asm
+   Uses
+      At line 2 in file intro.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 12 in file intro.asm
+   Uses
+      At line 6 in file intro.asm
+      At line 9 in file intro.asm
+
+STOP 00000008
+
+Symbol: STOP
+   Definitions
+      At line 16 in file intro.asm
+   Uses
+      At line 17 in file intro.asm
+Comment: STOP used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 8 in file intro.asm
+   Uses
+      None
+Comment: mycode unused
+3 symbols
+338 symbols in table

@@ -1,0 +1,2 @@
+Dependencies for Project 'codeToDatanoOverlap', Target 'Target 1': (DO NOT MODIFY !)
+F (.\codeToDatanoOverlap.asm)(0x5732320A)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I "Z:\media\arkeyve\Archive\Code\Embedded System\ARM_NXP-LPC1768\lab1\RTE"-I C:\Keil_v5\ARM\PACK\Keil\LPC1700_DFP\2.2.0\Device\Include-I C:\Keil_v5\ARM\CMSIS\Include--pd "__UVISION_VERSION SETA 517" --pd "LPC175x_6x SETA 1"--list .\listings\codetodatanooverlap.lst --xref -o .\objects\codetodatanooverlap.o --depend .\objects\codetodatanooverlap.d)

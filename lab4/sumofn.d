@@ -1,0 +1,1 @@
+sumofn.o: sumofn.asm

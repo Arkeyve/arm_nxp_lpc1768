@@ -1,0 +1,36 @@
+		AREA RESET,CODE,READONLY
+		EXPORT __Vectors
+	
+__Vectors
+		DCD 0x40001000
+		DCD Reset_Handler
+	
+		AREA mycode,CODE,READONLY
+		EXPORT Reset_Handler
+		ENTRY
+	
+Reset_Handler
+		MOV R3,#2 ;counter
+		LDR R0,=num1
+		LDR R1,=num2
+		LDR R2,=sum
+		MOVS R4,#0
+		;MOVS R8,#0
+BACK	LDR R5,[R0],#4
+		LDR R6,[R1],#4
+		;MSR xPSR,R8
+		ADCS R7,R5,R6
+		STR R7,[R2]
+		SUB R3,#1
+		;MRS R8,xPSR
+		TEQ R3,#0	;CMP R3,#0
+		BNE BACK	
+		
+STOP 	B STOP
+num1	DCD 0x12345678,0x91011121
+num2 	DCD 0x91011121,0x12345678
+
+		AREA mydata,DATA,READWRITE
+sum 	DCD 0,0
+	
+		END

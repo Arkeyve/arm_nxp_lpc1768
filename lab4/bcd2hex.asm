@@ -1,0 +1,32 @@
+	AREA RESET,DATA,READONLY
+	EXPORT __Vectors
+	
+__Vectors
+	DCD 0x40001000
+	DCD Reset_Handler
+	
+	AREA bcd2hex,CODE,READONLY
+	EXPORT Reset_Handler
+	ENTRY
+	
+Reset_Handler
+	LDR R0,=bcd
+	LDR R1,[R0]
+	LDR R4,=hex
+	MOV R2,R1
+	LSR R1,R2,#4
+	MOV R3,#0x0A
+	MUL R1,R3
+	AND R2,#0x0F
+	ADD R1,R2
+	STR R1,[R4]
+	
+STOP
+	B STOP
+	
+bcd DCD 0x10
+	
+	AREA hexstore,DATA,READWRITE
+hex DCD 0
+
+	END

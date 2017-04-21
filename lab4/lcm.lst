@@ -1,0 +1,165 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             RESET,DATA,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 40001000        DCD              0x40001000
+    6 00000004 00000000        DCD              Reset_Handler
+    7 00000008         
+    8 00000008                 AREA             lcm,CODE,READONLY
+    9 00000000                 EXPORT           Reset_Handler
+   10 00000000                 ENTRY
+   11 00000000         
+   12 00000000         Reset_Handler
+   13 00000000 480C            LDR              R0,=num1
+   14 00000002 490D            LDR              R1,=num2
+   15 00000004 F04F 0301       MOV              R3,#1
+   16 00000008 4C0C            LDR              R4,=lcmresult
+   17 0000000A 6805            LDR              R5,[R0]
+   18 0000000C 680E            LDR              R6,[R1]
+   19 0000000E         lcmloop
+   20 0000000E FB05 F703       MUL              R7,R5,R3
+   21 00000012 46B8            MOV              R8,R7
+   22 00000014 45B0    div     CMP              R8,R6
+   23 00000016 BF28 EBA8 
+              0806             SUBHS            R8,R8,R6
+   24 0000001C D2FA            BHS              div
+   25 0000001E F1B8 0F00       CMP              R8,#0
+   26 00000022 BF18 3301       ADDNE            R3,#1
+   27 00000026 D1F2            BNE              lcmloop
+   28 00000028 6027            STR              R7,[R4]
+   29 0000002A         
+   30 0000002A         STOP
+   31 0000002A E7FE            B                STOP
+   32 0000002C         
+   33 0000002C 00000009 
+                       num1    DCD              0x9
+   34 00000030 00000006 
+                       num2    DCD              0x6
+   35 00000034         
+   36 00000034 00000000 
+              00000000 
+              00000000         AREA             lcmres,DATA,READWRITE
+   37 00000000         lcmresult
+   38 00000000 00000000        DCD              0
+   39 00000004         
+   40 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=lcm.d -o
+lcm.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NXP\
+LPC17xx --predefine="__EVAL SETA 1" --list=lcm.lst lcm.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+RESET 00000000
+
+Symbol: RESET
+   Definitions
+      At line 1 in file lcm.asm
+   Uses
+      None
+Comment: RESET unused
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file lcm.asm
+   Uses
+      At line 2 in file lcm.asm
+Comment: __Vectors used once
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 12 in file lcm.asm
+   Uses
+      At line 6 in file lcm.asm
+      At line 9 in file lcm.asm
+
+STOP 0000002A
+
+Symbol: STOP
+   Definitions
+      At line 30 in file lcm.asm
+   Uses
+      At line 31 in file lcm.asm
+Comment: STOP used once
+div 00000014
+
+Symbol: div
+   Definitions
+      At line 22 in file lcm.asm
+   Uses
+      At line 24 in file lcm.asm
+Comment: div used once
+lcm 00000000
+
+Symbol: lcm
+   Definitions
+      At line 8 in file lcm.asm
+   Uses
+      None
+Comment: lcm unused
+lcmloop 0000000E
+
+Symbol: lcmloop
+   Definitions
+      At line 19 in file lcm.asm
+   Uses
+      At line 27 in file lcm.asm
+Comment: lcmloop used once
+num1 0000002C
+
+Symbol: num1
+   Definitions
+      At line 33 in file lcm.asm
+   Uses
+      At line 13 in file lcm.asm
+Comment: num1 used once
+num2 00000030
+
+Symbol: num2
+   Definitions
+      At line 34 in file lcm.asm
+   Uses
+      At line 14 in file lcm.asm
+Comment: num2 used once
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+lcmres 00000000
+
+Symbol: lcmres
+   Definitions
+      At line 36 in file lcm.asm
+   Uses
+      None
+Comment: lcmres unused
+lcmresult 00000000
+
+Symbol: lcmresult
+   Definitions
+      At line 37 in file lcm.asm
+   Uses
+      At line 16 in file lcm.asm
+Comment: lcmresult used once
+2 symbols
+344 symbols in table

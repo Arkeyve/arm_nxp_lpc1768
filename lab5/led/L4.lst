@@ -1,0 +1,131 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 AREA             mycode,CODE,READONLY
+    2 00000000                 EXPORT           __Vectors
+    3 00000000         __Vectors
+    4 00000000 40001000        DCD              0X40001000  ;
+    5 00000004 00000000        DCD              Reset_Handler
+    6 00000008                 ALIGN
+    7 00000008                 ENTRY
+    8 00000008                 EXPORT           Reset_Handler
+    9 00000008         Reset_Handler
+   10 00000008 480A            LDR              R0,=SRC
+   11 0000000A 4E0B            LDR              R6,=Result
+   12 0000000C F850 1B04       LDR              R1,[R0],#4
+   13 00000010 6802            LDR              R2,[R0]
+   14 00000012 1A53            SUBS             R3,R2,R1
+   15 00000014 F164 0400       SBC              R4,#0
+   16 00000018 2C00            CMP              R4,#0
+   17 0000001A D000            BEQ              DOWN
+   18 0000001C 6033            STR              R3,[R6]
+   19 0000001E 2C00    DOWN    CMP              R4,#0
+   20 00000020 D0FF            BEQ              D
+   21 00000022         D
+   22 00000022 F04F 0700       MOV              R7,#0
+   23 00000026 1AFB            SUBS             R3,R7,R3
+   24 00000028 6033            STR              R3,[R6]
+   25 0000002A         
+   26 0000002A         STOP
+   27 0000002A E7FE            B                STOP
+   28 0000002C 00000028 
+              00000019 SRC     DCD              0X00000028,0X00000019
+   29 00000034 00000000 
+              00000000         AREA             DATASEG,DATA,READWRITE
+   30 00000000 00000000 
+                       Result  DCD              0
+   31 00000004                 END
+Command Line: --debug --xref --cpu=Cortex-M3 --apcs=interwork --depend=L4.d -oL
+4.o -IC:\Keil\ARM\RV31\INC -IC:\Keil\ARM\CMSIS\Include -IC:\Keil\ARM\Inc\NXP\LP
+C17xx --predefine="__EVAL SETA 1" --list=L4.lst L4.asm
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+D 00000022
+
+Symbol: D
+   Definitions
+      At line 21 in file L4.asm
+   Uses
+      At line 20 in file L4.asm
+Comment: D used once
+DOWN 0000001E
+
+Symbol: DOWN
+   Definitions
+      At line 19 in file L4.asm
+   Uses
+      At line 17 in file L4.asm
+Comment: DOWN used once
+Reset_Handler 00000008
+
+Symbol: Reset_Handler
+   Definitions
+      At line 9 in file L4.asm
+   Uses
+      At line 5 in file L4.asm
+      At line 8 in file L4.asm
+
+SRC 0000002C
+
+Symbol: SRC
+   Definitions
+      At line 28 in file L4.asm
+   Uses
+      At line 10 in file L4.asm
+Comment: SRC used once
+STOP 0000002A
+
+Symbol: STOP
+   Definitions
+      At line 26 in file L4.asm
+   Uses
+      At line 27 in file L4.asm
+Comment: STOP used once
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 3 in file L4.asm
+   Uses
+      At line 2 in file L4.asm
+Comment: __Vectors used once
+mycode 00000000
+
+Symbol: mycode
+   Definitions
+      At line 1 in file L4.asm
+   Uses
+      None
+Comment: mycode unused
+7 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+DATASEG 00000000
+
+Symbol: DATASEG
+   Definitions
+      At line 29 in file L4.asm
+   Uses
+      None
+Comment: DATASEG unused
+Result 00000000
+
+Symbol: Result
+   Definitions
+      At line 30 in file L4.asm
+   Uses
+      At line 11 in file L4.asm
+Comment: Result used once
+2 symbols
+342 symbols in table

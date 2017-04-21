@@ -1,0 +1,2 @@
+Dependencies for Project 'lab5', Target 'Target 1': (DO NOT MODIFY !)
+F (.\ascii-hex.asm)(0x56BD7084)(--cpu Cortex-M3 --pd "__EVAL SETA 1" -g --apcs=interwork -I C:\Keil\ARM\RV31\INC -I C:\Keil\ARM\CMSIS\Include -I C:\Keil\ARM\Inc\NXP\LPC17xx --list "ascii-hex.lst" --xref -o "ascii-hex.o" --depend "ascii-hex.d")

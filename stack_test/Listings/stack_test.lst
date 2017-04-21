@@ -1,0 +1,96 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000                 area             reset, data, readonly
+    2 00000000                 export           __Vectors
+    3 00000000         
+    4 00000000         __Vectors
+    5 00000000 40001000        dcd              0x40001000
+    6 00000004 00000000        dcd              Reset_Handler
+    7 00000008         
+    8 00000008                 area             stack_test, code, readonly
+    9 00000000                 export           Reset_Handler
+   10 00000000                 entry
+   11 00000000         
+   12 00000000         Reset_Handler
+   13 00000000 4903            ldr              r1, = 0x11223344
+   14 00000002 4A04            ldr              r2, = 0x55667788
+   15 00000004 4B04            ldr              r3, = 0x9900aabb
+   16 00000006 4C05            ldr              r4, = 0xccddeeff
+   17 00000008 4D05            ldr              r5, = 0x40001000
+   18 0000000A B41E            push             {r4, r1, r2, r3}
+   19 0000000C         
+   20 0000000C         stop
+   21 0000000C E7FE            b                stop
+   22 0000000E         
+   23 0000000E                 end
+              00 00 11223344 
+              55667788 
+              9900AABB 
+              CCDDEEFF 
+              40001000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\objects\stack_test.d -o.\objects\stack_test.o -I"Z:\media\arkeyv
+e\Archive\Code\Embedded System\ARM_NXP-LPC1768\stack_test\RTE" -IC:\Keil_v5\ARM
+\PACK\Keil\LPC1700_DFP\2.2.0\Device\Include -IC:\Keil_v5\ARM\CMSIS\Include --pr
+edefine="__EVAL SETA 1" --predefine="__UVISION_VERSION SETA 517" --predefine="L
+PC175x_6x SETA 1" --list=.\listings\stack_test.lst stack_test.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+__Vectors 00000000
+
+Symbol: __Vectors
+   Definitions
+      At line 4 in file stack_test.s
+   Uses
+      At line 2 in file stack_test.s
+Comment: __Vectors used once
+reset 00000000
+
+Symbol: reset
+   Definitions
+      At line 1 in file stack_test.s
+   Uses
+      None
+Comment: reset unused
+2 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+Reset_Handler 00000000
+
+Symbol: Reset_Handler
+   Definitions
+      At line 12 in file stack_test.s
+   Uses
+      At line 6 in file stack_test.s
+      At line 9 in file stack_test.s
+
+stack_test 00000000
+
+Symbol: stack_test
+   Definitions
+      At line 8 in file stack_test.s
+   Uses
+      None
+Comment: stack_test unused
+stop 0000000C
+
+Symbol: stop
+   Definitions
+      At line 20 in file stack_test.s
+   Uses
+      At line 21 in file stack_test.s
+Comment: stop used once
+3 symbols
+340 symbols in table
